@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Create from './Create'
 import { useState } from 'react'
 import axios from 'axios'
 function Home() {
     // all todos stored in an empty array
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState([{task : "alguna tarea"}])
     useEffect(() => {
         axios.get('http://localhost:3001/get')
             .then(result => setTodos(result.data))
@@ -19,13 +19,13 @@ function Home() {
                 todos.length === 0 ?
                     <div><h2>Empty</h2></div>
                     : todos.map((todo) => (
-                        <div className='task'>
+                        <div className='task' /* key={todo._id} Please in the response of the request that is saved in the state todo add an id to be used here as todo.id */> 
                             <div className='checkbox'>
-                                <BsCircleFill className='icon' />
+                               
                                 <p>{todo.task}</p>
                             </div>
                             <div>
-                                <span><BsFillTrashFill clasName='icon' /></span>
+                                
                             </div>
                         </div>
                     ))
